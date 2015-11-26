@@ -19,7 +19,7 @@ public class HealthReportActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_health_report);
+        setContentView(R.layout.activity_health_report_high_chance);
     }
 }
 
