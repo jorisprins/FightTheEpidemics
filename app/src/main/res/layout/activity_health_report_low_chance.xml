@@ -63,39 +63,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="1. Take some rest."
+        android:text="1.When you notice symptoms, take some rest and do the test again."
         android:id="@+id/textView10"
         android:textColor="#010101"
         android:textStyle="bold"
         android:textAlignment="center"
         android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/button2"
-        android:layout_alignEnd="@+id/button2" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="2. Call a dokter within 24 hours and make an appoinment."
+        android:text="2.When the symptoms are getting worse, make an appointment with a doctor."
         android:id="@+id/textView11"
         android:textColor="#010101"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:layout_alignParentEnd="true"
         android:layout_below="@+id/textView10"
-        android:layout_alignRight="@+id/button2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="3. Stop the spreading of the disease by limiting the people near you."
-        android:id="@+id/textView12"
-        android:textColor="#010101"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/textView11"
-        android:layout_alignRight="@+id/button2" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="52dp" />
 
 </RelativeLayout>
