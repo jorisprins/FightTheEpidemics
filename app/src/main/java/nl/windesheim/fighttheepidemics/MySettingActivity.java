@@ -18,7 +18,6 @@ public class MySettingActivity extends AppCompatActivity {
     public boolean mobileSwitchStatus = false;
 
     private Switch anonSwitch;
-
     private Switch wifiSwitch;
     private Switch mobileSwitch;
 

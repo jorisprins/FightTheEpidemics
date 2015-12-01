@@ -29,14 +29,5 @@
         android:layout_centerHorizontal="true"
         android:onClick="onMySettingsClicked" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SIGN IN"
-        android:id="@+id/signIn"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/mySettings"
-        android:layout_alignEnd="@+id/mySettings"
-        android:onClick="onSignInClicked" />
 
 </RelativeLayout>
