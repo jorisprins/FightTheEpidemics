@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:id="@+id/d">
+
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sending Data Ananymously"
+        android:id="@+id/ananSwitch"
+        android:textColor="#FF000000"
+        android:textSize="20dp"
+        android:splitTrack="false"
+        android:singleLine="false"
+        android:showText="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="168dp" />
+
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Use Wi-fi for sending location data"
+        android:id="@+id/wifiSwitch"
+        android:textColor="#FF000000"
+        android:textSize="20dp"
+        android:splitTrack="false"
+        android:singleLine="false"
+        android:showText="false"
+        android:longClickable="false"
+        android:nestedScrollingEnabled="false"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Use mobile data for sending location data"
+        android:id="@+id/mobileSwitch"
+        android:textColor="#FF000000"
+        android:textSize="20dp"
+        android:splitTrack="false"
+        android:singleLine="false"
+        android:showText="false"
+        android:longClickable="false"
+        android:nestedScrollingEnabled="false"
+        android:layout_below="@+id/wifiSwitch"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SAVE"
+        android:id="@+id/sSave"
+        android:textSize="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CANCEL"
+        android:id="@+id/sCancel"
+        android:textSize="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/mobileSwitch"
+        android:layout_alignEnd="@+id/mobileSwitch"
+        android:onClick="onCancelClicked" />
+</RelativeLayout>
