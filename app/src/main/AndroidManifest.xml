@@ -22,6 +22,10 @@
         <activity android:name=".HealthReportActivity" ></activity>
         <activity android:name=".HealthMoreinfoActivity" ></activity>
         <activity android:name=".SignInActivity" ></activity>
+        <activity android:name=".HighChanceActivity" ></activity>
+        <activity android:name=".MediumChanceActivity" ></activity>
+        <activity android:name=".LowChanceActivity" ></activity>
+        <activity android:name=".CheckResultActivity" ></activity>
 
     </application>
 

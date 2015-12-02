@@ -1,6 +1,5 @@
 package nl.windesheim.fighttheepidemics;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,12 +11,17 @@ import android.view.View;
 //p.71
 
 
-public class HealthReportActivity extends AppCompatActivity
+public class HighChanceActivity extends AppCompatActivity
+
 {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_health_report);
+        setContentView(R.layout.activity_health_report_high_chance);
     }
 
+    public void onhUnderstandClicked(View v){
+        finish();
+        //use intent flag
+    }
 }

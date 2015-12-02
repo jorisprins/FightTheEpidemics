@@ -12,12 +12,16 @@ import android.view.View;
 //p.71
 
 
-public class HealthReportActivity extends AppCompatActivity
+public class LowChanceActivity extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_health_report);
+        setContentView(R.layout.activity_health_report_low_chance);
     }
 
+    public void onlUnderstandClicked(View v){
+        finish();
+        //use intent flag
+    }
 }
