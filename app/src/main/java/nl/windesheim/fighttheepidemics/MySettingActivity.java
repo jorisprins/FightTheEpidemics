@@ -48,6 +48,7 @@ public class MySettingActivity extends AppCompatActivity {
         anonSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity mActivity = new MainActivity();
 
                 if (anonSwitch.isChecked()) {
                     //function anonymous on
@@ -56,11 +57,16 @@ public class MySettingActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
                     editor.putBoolean("AnonSwitchStatus", true);
                     editor.commit();
+
+                    mActivity.startLocationUpdates();
+
                 } else {
                     //function anonymous off
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
                     editor.putBoolean("AnonSwitchStatus", false);
                     editor.commit();
+
+                    mActivity.stopLocationUpdates();
                 }
             }
         });

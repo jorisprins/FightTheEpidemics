@@ -1,6 +1,7 @@
 package nl.windesheim.fighttheepidemics;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
 
     private Location mLastLocation;
+    private SharedPreferences sharedPreferences;
 
     // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
@@ -149,6 +151,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 
     @Override
     public void onConnected(Bundle arg0) {
+
         // Once connected with google api, get the location
         if (mRequestingLocationUpdates) {
             startLocationUpdates();
@@ -222,16 +225,26 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
      * Starting the location updates
      * */
     protected void startLocationUpdates() {
-        LocationServices.FusedLocationApi.requestLocationUpdates(
-                mGoogleApiClient, mLocationRequest, this);
+        sharedPreferences = getSharedPreferences("nl.windesheim.fighttheepidemics", Context.MODE_PRIVATE);
+        boolean switchState = sharedPreferences.getBoolean("AnonSwitchStatus", false);
+
+        if(switchState) {
+            LocationServices.FusedLocationApi.requestLocationUpdates(
+                    mGoogleApiClient, mLocationRequest, this);
+        }
     }
 
     /**
      * Stopping location updates
      */
     protected void stopLocationUpdates() {
-        LocationServices.FusedLocationApi.removeLocationUpdates(
-                mGoogleApiClient, this);
+        sharedPreferences = getSharedPreferences("nl.windesheim.fighttheepidemics", Context.MODE_PRIVATE);
+        boolean switchState = sharedPreferences.getBoolean("AnonSwitchStatus", false);
+
+        if(!switchState) {
+            LocationServices.FusedLocationApi.removeLocationUpdates(
+                    mGoogleApiClient, this);
+        }
     }
 
     public void onHealthClicked(View v){
