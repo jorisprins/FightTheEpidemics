@@ -1,6 +1,7 @@
 package nl.windesheim.fighttheepidemics;
 
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.OutputStreamWriter;
+import java.util.Date;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -25,13 +30,18 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationListener;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener  {
 
     // LogCat tag
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String FILE_NAME = "GPSLogData";
 
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
 
@@ -166,8 +176,10 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
         // Assign the new location
         mLastLocation = location;
 
-        Log.d(TAG, "xxx" + location);
-    };
+        Log.d(TAG, "loc:" + location);
+        //writeToInternalStorage(location);
+        writeToSDCard(location);
+    }
 
     @Override
     protected void onStart() {
@@ -193,9 +205,11 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     @Override
     protected void onStop() {
         super.onStop();
-        //if (mGoogleApiClient.isConnected()) {
-        //    mGoogleApiClient.disconnect();
-        //}
+        if (mGoogleApiClient.isConnected()) {
+            //We dont close the connection because we want it to run
+            //in the the background too.
+            //mGoogleApiClient.disconnect();
+        }
     }
 
     @Override
@@ -257,6 +271,67 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     public void onSignInClicked(View v){
         Intent mainSignInIntent = new Intent(getApplicationContext(), SignInActivity.class);
         startActivity(mainSignInIntent);
+    }
+
+
+    public void writeToInternalStorage(Location location){
+        String data = getCurrentTimeStamp()+ " - " + location.getLatitude() + ", " + location.getLongitude();
+        try {
+            FileOutputStream fos = openFileOutput(FILE_NAME,
+                    Context.MODE_APPEND);
+            fos.write(data.getBytes());
+            fos.close();
+            fos.flush();
+
+            File file = new File(getFilesDir() + " " );
+            Log.d(TAG, "dir:" + file.getParent());
+
+        } catch (FileNotFoundException e) { e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeToSDCard(Location location) {
+        FileOutputStream fos;
+        String data = getCurrentTimeStamp() + " - " + location.getLatitude() + ", " + location.getLongitude() + "\n";
+
+        try {
+            File file = new File("/sdcard/" + FILE_NAME);
+            if (!file.exists())
+            {
+                file.createNewFile();
+            }
+
+            FileOutputStream fOut = new FileOutputStream(file, true);
+            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+
+            myOutWriter.append(data);
+            myOutWriter.close();
+            fOut.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @return yyyy-MM-dd HH:mm:ss formate date as string
+     */
+    public static String getCurrentTimeStamp(){
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String currentTimeStamp = dateFormat.format(new Date());
+
+            return currentTimeStamp;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
     }
 
 }

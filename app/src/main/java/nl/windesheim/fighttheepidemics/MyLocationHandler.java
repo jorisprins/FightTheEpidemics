@@ -9,10 +9,13 @@ import com.google.android.gms.location.FusedLocationProviderApi;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
 
+import java.io.File;
+
 /**
  * Created by Joris on 1-12-2015.
  */
 public class MyLocationHandler extends IntentService {
+
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -25,9 +28,6 @@ public class MyLocationHandler extends IntentService {
         final Location location = intent.getParcelableExtra(FusedLocationProviderApi.KEY_LOCATION_CHANGED);
 
         //TODO background shizzle
-        if(location !=null) {
-            Log.d(TAG, "hoi" + location);
-        }
 
 
     }

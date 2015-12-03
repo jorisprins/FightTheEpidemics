@@ -27,14 +27,12 @@ public class MySettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mysettings);
 
         //SharedPreferences anonSwitchStatus;
-       // SharedPreferences wifiSwitchStatus;
+        //SharedPreferences wifiSwitchStatus;
         //SharedPreferences mobileSwitchStatus;
-
 
         anonSwitch = (Switch) findViewById(R.id.anonSwitch);
         wifiSwitch = (Switch) findViewById(R.id.wifiSwitch);
         mobileSwitch = (Switch) findViewById(R.id.mobileSwitch);
-
 
         //TO LOAD
         SharedPreferences anonPrefs = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE);
@@ -46,8 +44,6 @@ public class MySettingActivity extends AppCompatActivity {
         SharedPreferences mobilePrefs = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE);
         mobileSwitch.setChecked(mobilePrefs.getBoolean("MobileSwitchStatus", mobileSwitchStatus));
 
-
-
         //TO SAVE
         anonSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +51,6 @@ public class MySettingActivity extends AppCompatActivity {
 
                 if (anonSwitch.isChecked()) {
                     //function anonymous on
-
                     Toast.makeText(getApplicationContext(), "You are going to send data anonymously.", Toast.LENGTH_SHORT).show();
 
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
@@ -110,12 +105,6 @@ public class MySettingActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
-
-
-
-
 
 }
