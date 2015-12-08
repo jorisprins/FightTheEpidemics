@@ -5,6 +5,11 @@
 .DS_Store
 /build
 /captures
+<<<<<<< Updated upstream
 .idea/vcs.xml
 app/app.iml
 .idea/vcs.xml
+=======
+
+app/app.iml
+>>>>>>> Stashed changes
