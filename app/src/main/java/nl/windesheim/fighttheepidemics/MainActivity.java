@@ -286,7 +286,6 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
         startActivity(mainSignInIntent);
     }
 
-
     public void writeToInternalStorage(Location location){
         String data = getCurrentTimeStamp()+ " - " + location.getLatitude() + ", " + location.getLongitude();
         try {
