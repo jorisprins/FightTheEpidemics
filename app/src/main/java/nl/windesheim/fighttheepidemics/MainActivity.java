@@ -305,7 +305,6 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     }
 
     public void writeToSDCard(Location location) {
-        FileOutputStream fos;
         String data = getCurrentTimeStamp() + " - " + location.getLatitude() + ", " + location.getLongitude() + "\n";
 
         try {
