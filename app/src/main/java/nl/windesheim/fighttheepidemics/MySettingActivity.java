@@ -1,6 +1,8 @@
 package nl.windesheim.fighttheepidemics;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,6 +22,7 @@ public class MySettingActivity extends AppCompatActivity {
     private Switch anonSwitch;
     private Switch wifiSwitch;
     private Switch mobileSwitch;
+    private WifiManager wifiManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class MySettingActivity extends AppCompatActivity {
         anonSwitch = (Switch) findViewById(R.id.anonSwitch);
         wifiSwitch = (Switch) findViewById(R.id.wifiSwitch);
         mobileSwitch = (Switch) findViewById(R.id.mobileSwitch);
+
 
         //TO LOAD
         SharedPreferences anonPrefs = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE);
@@ -74,6 +78,7 @@ public class MySettingActivity extends AppCompatActivity {
         wifiSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
                 if (wifiSwitch.isChecked()) {
                     //wifi on
@@ -82,11 +87,17 @@ public class MySettingActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
                     editor.putBoolean("WifiSwitchStatus", true);
                     editor.commit();
+
+                    //08 12 2015 added - wifi enabled
+                    wifiManager.setWifiEnabled(true);
                 } else {
                     //wifi off
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
                     editor.putBoolean("WifiSwitchStatus", false);
                     editor.commit();
+
+                    //08 12 2015 added - wifi disabled
+                    wifiManager.setWifiEnabled(false);
                 }
             }
         });
@@ -103,6 +114,23 @@ public class MySettingActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
                     editor.putBoolean("MobileSwitchStatus", true);
                     editor.commit();
+
+
+                    /*
+                    private void setMobileDataEnabled(Context context, boolean enabled) {
+                        final ConnectivityManager conman = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        final Class conmanClass = Class.forName(conman.getClass().getName());
+                        final Field iConnectivityManagerField = conmanClass.getDeclaredField("mService");
+                        iConnectivityManagerField.setAccessible(true);
+                        final Object iConnectivityManager = iConnectivityManagerField.get(conman);
+                        final Class iConnectivityManagerClass = Class.forName(iConnectivityManager.getClass().getName());
+                        final Method setMobileDataEnabledMethod = iConnectivityManagerClass.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
+                        setMobileDataEnabledMethod.setAccessible(true);
+
+                        setMobileDataEnabledMethod.invoke(iConnectivityManager, enabled);
+                    }
+                     */
+
                 } else {
                     //mobile off
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
