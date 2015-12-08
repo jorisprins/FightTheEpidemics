@@ -37,6 +37,7 @@
         <activity android:name=".HighChanceActivity" ></activity>
         <activity android:name=".MediumChanceActivity" ></activity>
         <activity android:name=".LowChanceActivity" ></activity>
+        <activity android:name=".OtherChanceActivity" ></activity>
         <activity android:name=".CheckResultActivity" ></activity>
 
     </application>

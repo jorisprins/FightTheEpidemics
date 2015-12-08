@@ -24,9 +24,8 @@
         android:id="@+id/cbCough"
         android:checked="false"
         android:textSize="20dp"
-        android:layout_marginLeft="51dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginLeft="47dp"
+        android:layout_marginStart="47dp"
         android:layout_below="@+id/textView4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -82,8 +81,8 @@
         android:layout_below="@+id/cbRunnynose"
         android:layout_alignLeft="@+id/cbRunnynose"
         android:layout_alignStart="@+id/cbRunnynose"
-        android:layout_alignRight="@+id/cbRunnynose"
-        android:layout_alignEnd="@+id/cbRunnynose" />
+        android:layout_alignRight="@+id/textView4"
+        android:layout_alignEnd="@+id/textView4" />
 
     <Button
         android:layout_width="200dp"
@@ -139,5 +138,16 @@
         android:layout_below="@+id/cbDbreathing"
         android:layout_alignLeft="@+id/cbDbreathing"
         android:layout_alignStart="@+id/cbDbreathing" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All of these symptoms came suddenly"
+        android:id="@+id/cbSuddenly"
+        android:checked="false"
+        android:textSize="20dp"
+        android:layout_below="@+id/cbBlurredvision"
+        android:layout_alignLeft="@+id/cbBlurredvision"
+        android:layout_alignStart="@+id/cbBlurredvision" />
 
 </RelativeLayout>
