@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Influenza or flu, is a respiratory illness that is caused by a virus. Flu is highly contagious and is usually spread by the coughs and sneezes of a person who is infected. You can also catch flu from an infected person if you touch them (e.g. shaking hands).   Adults are contagious one day before getting symptoms and up to 7 days after becoming ill. This means that you can spread the influenza virus before you even know you are infected. A flu epidemic, when a large number of people in one country are infected with flu, can last several weeks.  According to the National Institutes of Health, between 5% and 20% of Americans get the flu each year. More than 200,000 people are hospitalized and 36,000 die annually because of flu in the United States. "
+        android:id="@+id/textView13"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="42dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Influenza"
+        android:id="@+id/textView14"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
