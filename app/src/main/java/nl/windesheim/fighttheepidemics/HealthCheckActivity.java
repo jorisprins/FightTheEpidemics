@@ -22,6 +22,7 @@ public class HealthCheckActivity extends AppCompatActivity
     private CheckBox cbFatigue;
     private CheckBox cbDbreathing;
     private CheckBox cbBlurredvision;
+    private CheckBox cbSuddenly;
 
     public int count = 0;
 
@@ -39,6 +40,7 @@ public class HealthCheckActivity extends AppCompatActivity
         cbFatigue = (CheckBox) findViewById(R.id.cbFatigue);
         cbDbreathing = (CheckBox) findViewById(R.id.cbDbreathing);
         cbBlurredvision = (CheckBox) findViewById(R.id.cbBlurredvision);
+        cbSuddenly = (CheckBox) findViewById(R.id.cbSuddenly);
 
         cbFever.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -121,6 +123,15 @@ public class HealthCheckActivity extends AppCompatActivity
             }
         });
 
+        cbSuddenly.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    count++;
+                }
+            }
+        });
+
 
     }
 
@@ -133,16 +144,33 @@ public class HealthCheckActivity extends AppCompatActivity
         Intent lowChanceIntent = new Intent(getApplicationContext(), LowChanceActivity.class);
         Intent mediumChanceIntent = new Intent(getApplicationContext(), MediumChanceActivity.class);
         Intent highChanceIntent = new Intent(getApplicationContext(), HighChanceActivity.class);
+        Intent otherChanceIntent = new Intent(getApplicationContext(), OtherChanceActivity.class);
+        Intent coldIntent = new Intent(getApplicationContext(), ColdActivity.class);
+
 
         if (count == 0){
             Toast.makeText(getApplicationContext(), "Please check your symptoms first.", Toast.LENGTH_SHORT).show();
-            finish(); //i have to change this to remain on activity
+            //i have to change this to remain on activity
         } else if (count > 0 && count <= 2){
-            startActivity(lowChanceIntent);
+            //if it contains blurred vision and difficulty in breathing
+            if (cbBlurredvision.isChecked() && cbDbreathing.isChecked()){
+                startActivity(otherChanceIntent);
+            } else if (cbRunnynose.isChecked() && cbSorethroat.isChecked()){
+                startActivity(coldIntent);
+            } else {
+                startActivity(lowChanceIntent);
+            }
         } else if (count > 2 && count <= 5) {
-            startActivity(mediumChanceIntent);
+                if (cbFever.isChecked() && cbBodyaches.isChecked() && cbCough.isChecked() && cbFatigue.isChecked() && cbSuddenly.isChecked()){
+                    startActivity(highChanceIntent);
+                } else {
+                    startActivity(mediumChanceIntent);
+                }
         } else if (count > 5 && count <= 9) {
-            startActivity(highChanceIntent);
+            if (cbFever.isChecked() && cbBodyaches.isChecked() && cbCough.isChecked() && cbFatigue.isChecked()) {
+                startActivity(highChanceIntent);
+            }
         }
+
     }
 }
