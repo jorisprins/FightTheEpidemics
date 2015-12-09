@@ -63,7 +63,7 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Runny or stuffy noise"
+        android:text="Runny or stuffy nose"
         android:id="@+id/cbRunnynose"
         android:checked="false"
         android:textSize="20dp"

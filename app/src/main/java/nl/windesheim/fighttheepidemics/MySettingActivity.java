@@ -2,6 +2,7 @@ package nl.windesheim.fighttheepidemics;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 public class MySettingActivity extends AppCompatActivity {
 
     public boolean anonSwitchStatus = false;
@@ -23,6 +28,7 @@ public class MySettingActivity extends AppCompatActivity {
     private Switch wifiSwitch;
     private Switch mobileSwitch;
     private WifiManager wifiManager;
+    private ConnectivityManager connectivityManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,10 +111,24 @@ public class MySettingActivity extends AppCompatActivity {
         mobileSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               /*
+            private void setMobileDataEnabled(Context context, boolean enabled) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+                final ConnectivityManager conman = (ConnectivityManager)  context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                final Class conmanClass = Class.forName(conman.getClass().getName());
+                final Field connectivityManagerField = conmanClass.getDeclaredField("mService");
+                connectivityManagerField.setAccessible(true);
+                final Object connectivityManager = connectivityManagerField.get(conman);
+                final Class connectivityManagerClass =  Class.forName(connectivityManager.getClass().getName());
+                final Method setMobileDataEnabledMethod = connectivityManagerClass.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
+                setMobileDataEnabledMethod.setAccessible(true);
+
+                setMobileDataEnabledMethod.invoke(connectivityManager, enabled);
+                }
+}
+                */
 
                 if (mobileSwitch.isChecked()) {
                     //mobile on
-
                     Toast.makeText(getApplicationContext(), "You are going to use mobile data for sending location data.", Toast.LENGTH_SHORT).show();
 
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
@@ -116,26 +136,13 @@ public class MySettingActivity extends AppCompatActivity {
                     editor.commit();
 
 
-                    /*
-                    private void setMobileDataEnabled(Context context, boolean enabled) {
-                        final ConnectivityManager conman = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-                        final Class conmanClass = Class.forName(conman.getClass().getName());
-                        final Field iConnectivityManagerField = conmanClass.getDeclaredField("mService");
-                        iConnectivityManagerField.setAccessible(true);
-                        final Object iConnectivityManager = iConnectivityManagerField.get(conman);
-                        final Class iConnectivityManagerClass = Class.forName(iConnectivityManager.getClass().getName());
-                        final Method setMobileDataEnabledMethod = iConnectivityManagerClass.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
-                        setMobileDataEnabledMethod.setAccessible(true);
-
-                        setMobileDataEnabledMethod.invoke(iConnectivityManager, enabled);
-                    }
-                     */
-
                 } else {
                     //mobile off
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
                     editor.putBoolean("MobileSwitchStatus", false);
                     editor.commit();
+
+
                 }
             }
         });

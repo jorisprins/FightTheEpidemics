@@ -147,15 +147,17 @@ public class HealthCheckActivity extends AppCompatActivity
         Intent otherChanceIntent = new Intent(getApplicationContext(), OtherChanceActivity.class);
         Intent coldIntent = new Intent(getApplicationContext(), ColdActivity.class);
 
-
+/*
         if (count == 0){
             Toast.makeText(getApplicationContext(), "Please check your symptoms first.", Toast.LENGTH_SHORT).show();
             //i have to change this to remain on activity
         } else if (count > 0 && count <= 2){
             //if it contains blurred vision and difficulty in breathing
-            if (cbBlurredvision.isChecked() && cbDbreathing.isChecked()){
+            if (cbBlurredvision.isChecked() || cbDbreathing.isChecked()){
+                //one of them or both => other chance
                 startActivity(otherChanceIntent);
-            } else if (cbRunnynose.isChecked() && cbSorethroat.isChecked()){
+            } else if (cbRunnynose.isChecked() || cbSorethroat.isChecked()){
+                //runnynose and sorethroat -> or nothing -> cold
                 startActivity(coldIntent);
             } else {
                 startActivity(lowChanceIntent);
@@ -171,6 +173,7 @@ public class HealthCheckActivity extends AppCompatActivity
                 startActivity(highChanceIntent);
             }
         }
+        */
 
     }
 }
