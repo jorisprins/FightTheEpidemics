@@ -165,9 +165,9 @@ public class HealthCheckActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "You should check more then one symptom.", Toast.LENGTH_SHORT).show();
 
         }
-        else if (flu_symptoms == 0 && both_symptoms == 0 && not_flu_symptoms == 1){
+        else if (flu_symptoms == 0 && both_symptoms == 0 && not_flu_symptoms == 1) {
             Toast.makeText(getApplicationContext(), "You should check more then one symptom.", Toast.LENGTH_SHORT).show();
-
+        }
 
         else if (flu_symptoms == 1 && both_symptoms == 1 && not_flu_symptoms == 0){
             Toast.makeText(getApplicationContext(), "You should check more then two symptoms.", Toast.LENGTH_SHORT).show();
@@ -190,7 +190,6 @@ public class HealthCheckActivity extends AppCompatActivity {
             startActivity(highChanceIntent);
 
         }
-
 
         else if (flu_symptoms < 2 && both_symptoms == 2){
             startActivity(otherChanceIntent);
