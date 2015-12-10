@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="This test is not always right. Find out beneeth what you should do next."
+        android:text="This test is not always right. Find out beneath what you should do next."
         android:id="@+id/textView6"
         android:layout_marginTop="30dp"
         android:textColor="#000000"

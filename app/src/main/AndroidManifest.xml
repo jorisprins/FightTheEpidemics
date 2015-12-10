@@ -40,8 +40,8 @@
         <activity android:name=".LowChanceActivity" ></activity>
         <activity android:name=".OtherChanceActivity" ></activity>
         <activity android:name=".CheckResultActivity" ></activity>
-
     </application>
+
 
 </manifest>
 

@@ -1,5 +1,6 @@
 package nl.windesheim.fighttheepidemics;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.view.View;
 
 public class MediumChanceActivity extends AppCompatActivity
 {
+    protected int chance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +23,9 @@ public class MediumChanceActivity extends AppCompatActivity
     }
 
     public void onmUnderstandClicked(View v){
-        finish();
-        //use intent flag
+        Intent HealthActivityIntent = new Intent(getApplicationContext(), HealthActivity.class);
+        startActivity(HealthActivityIntent);//use intent flag
+
     }
+
 }

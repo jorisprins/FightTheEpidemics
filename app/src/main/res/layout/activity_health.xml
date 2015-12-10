@@ -24,7 +24,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CHECK SYMTOMS"
+        android:text="CHECK SYMPTOMS"
         android:id="@+id/hCheck"
         android:textSize="38dp"
         android:textColor="#FF000000"

@@ -1,8 +1,10 @@
 package nl.windesheim.fighttheepidemics;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 
 //drop-down menu (spinner p.356)
@@ -14,6 +16,8 @@ import android.view.View;
 public class HighChanceActivity extends AppCompatActivity
 
 {
+    //int s = ((MyApplication) this.getApplication()).getChance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +25,18 @@ public class HighChanceActivity extends AppCompatActivity
     }
 
     public void onhUnderstandClicked(View v){
-        finish();
+        Intent HealthActivityIntent = new Intent(getApplicationContext(), HealthActivity.class);
+        startActivity(HealthActivityIntent);
         //use intent flag
+        //((MyApplication) this.getApplication()).setChance(2);
     }
+
+    public void onhReportClicked(View v) {
+        Intent highReportIntent = new Intent(getApplicationContext(), HealthReportActivity.class);
+        startActivity(highReportIntent);
+
+
+    }
+
+
 }
