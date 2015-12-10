@@ -9,6 +9,8 @@ public class HealthMoreinfoActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_health_moreinfo);
+        setContentView(R.layout.activity_health_more_info);
+
     }
+
 }
