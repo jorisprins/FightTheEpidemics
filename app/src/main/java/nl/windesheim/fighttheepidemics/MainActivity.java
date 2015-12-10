@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Xml;
 import android.view.View;
 import android.widget.Button;
 import android.app.Activity;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.OutputStreamWriter;
+import java.io.StringWriter;
 import java.util.Date;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -30,6 +32,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationListener;
+
+import org.xmlpull.v1.XmlSerializer;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -343,6 +347,55 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
             e.printStackTrace();
 
             return null;
+        }
+    }
+
+    public void writeXMLToSDCard(Location location){
+        final String xmlFile = "GPSLogDataXML";
+
+        String longitude = String.valueOf(location.getLongitude());
+        String latitude = String.valueOf(location.getLatitude());
+        String date = getCurrentTimeStamp();
+
+        try {
+            FileOutputStream fos = new  FileOutputStream("GPSLogDataXML.xml");
+            FileOutputStream fileos= getApplicationContext().openFileOutput(xmlFile, Context.MODE_APPEND);
+            XmlSerializer xmlSerializer = Xml.newSerializer();
+            StringWriter writer = new StringWriter();
+            xmlSerializer.setOutput(writer);
+            xmlSerializer.startDocument("UTF-8", true);
+            xmlSerializer.startTag(null, "geoLocation");
+            xmlSerializer.startTag(null,"date");
+            xmlSerializer.text(date);
+            xmlSerializer.endTag(null, "date");
+            xmlSerializer.startTag(null, "longitude");
+            xmlSerializer.text(longitude);
+            xmlSerializer.endTag(null, "longitude");
+            xmlSerializer.startTag(null,"latitude");
+            xmlSerializer.text(latitude);
+            xmlSerializer.endTag(null, "latitude");
+            xmlSerializer.endTag(null, "geoLocation");
+            xmlSerializer.endDocument();
+            xmlSerializer.flush();
+            String dataWrite = writer.toString();
+            fileos.write(dataWrite.getBytes());
+            fileos.close();
+        }
+        catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (IllegalStateException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 

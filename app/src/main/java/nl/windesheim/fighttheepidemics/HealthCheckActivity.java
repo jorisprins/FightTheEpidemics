@@ -148,6 +148,7 @@ public class HealthCheckActivity extends AppCompatActivity {
         Intent otherChanceIntent = new Intent(getApplicationContext(), OtherChanceActivity.class);
         Intent coldIntent = new Intent(getApplicationContext(), ColdActivity.class);
 
+
         if (both_symptoms == 0 && flu_symptoms == 0 && not_flu_symptoms == 0) {
             //Nothing is checked warning message
             Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
@@ -167,7 +168,6 @@ public class HealthCheckActivity extends AppCompatActivity {
         else if (flu_symptoms == 0 && both_symptoms == 0 && not_flu_symptoms == 1){
             Toast.makeText(getApplicationContext(), "You should check more then one symptom.", Toast.LENGTH_SHORT).show();
 
-        }
 
         else if (flu_symptoms == 1 && both_symptoms == 1 && not_flu_symptoms == 0){
             Toast.makeText(getApplicationContext(), "You should check more then two symptoms.", Toast.LENGTH_SHORT).show();
