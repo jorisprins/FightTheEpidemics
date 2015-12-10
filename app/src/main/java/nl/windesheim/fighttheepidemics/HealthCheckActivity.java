@@ -11,8 +11,7 @@ import android.widget.Toast;
 
 import java.lang.Override;
 
-public class HealthCheckActivity extends AppCompatActivity
-{
+public class HealthCheckActivity extends AppCompatActivity {
     private CheckBox cbFever;
     private CheckBox cbCough;
     private CheckBox cbSorethroat;
@@ -24,7 +23,9 @@ public class HealthCheckActivity extends AppCompatActivity
     private CheckBox cbBlurredvision;
     private CheckBox cbSuddenly;
 
-    public int count = 0;
+    public int both_symptoms = 0;
+    public int flu_symptoms = 0;
+    public int not_flu_symptoms = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,90 +46,90 @@ public class HealthCheckActivity extends AppCompatActivity
         cbFever.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    count++;
-                }
+                if (isChecked) {
+                    flu_symptoms++;
+                } else { flu_symptoms--;}
             }
         });
 
         cbCough.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    count++;
-                }
+                if (isChecked) {
+                    flu_symptoms++;
+                }else { flu_symptoms--;}
             }
         });
 
         cbSorethroat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    count++;
-                }
+                if (isChecked) {
+                    both_symptoms++;
+                }else { both_symptoms--;}
             }
         });
 
         cbRunnynose.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    count++;
-                }
+                if (isChecked) {
+                    both_symptoms++;
+                }else {both_symptoms--;}
             }
         });
 
         cbBodyaches.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    count++;
-                }
+                if (isChecked) {
+                    flu_symptoms++;
+                }else { flu_symptoms--;}
             }
         });
 
         cbHeadache.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    count++;
-                }
+                if (isChecked) {
+                    flu_symptoms++;
+                }else { flu_symptoms--;}
             }
         });
 
         cbFatigue.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    count++;
-                }
+                if (isChecked) {
+                    flu_symptoms++;
+                }else { flu_symptoms--;}
             }
         });
 
         cbDbreathing.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    count++;
-                }
+                if (isChecked) {
+                    not_flu_symptoms++;
+                } else { not_flu_symptoms--;}
             }
         });
 
         cbBlurredvision.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    count++;
-                }
+                if (isChecked) {
+                    not_flu_symptoms++;
+                }else { not_flu_symptoms--;}
             }
         });
 
         cbSuddenly.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    count++;
-                }
+                if (isChecked) {
+                    flu_symptoms++;
+                } else { flu_symptoms--;}
             }
         });
 
@@ -136,7 +137,7 @@ public class HealthCheckActivity extends AppCompatActivity
     }
 
 
-    public void onCheckClicked(View v){
+    public void onCheckClicked(View v) {
         /*
         Intent checkIntent = new Intent(getApplicationContext(), CheckResultActivity.class);
         startActivity(checkIntent);
@@ -147,30 +148,68 @@ public class HealthCheckActivity extends AppCompatActivity
         Intent otherChanceIntent = new Intent(getApplicationContext(), OtherChanceActivity.class);
         Intent coldIntent = new Intent(getApplicationContext(), ColdActivity.class);
 
+        if (both_symptoms == 0 && flu_symptoms == 0 && not_flu_symptoms == 0) {
+            //Nothing is checked warning message
+            Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
 
-        if (count == 0){
-            Toast.makeText(getApplicationContext(), "Please check your symptoms first.", Toast.LENGTH_SHORT).show();
-            //i have to change this to remain on activity
-        } else if (count > 0 && count <= 2){
-            //if it contains blurred vision and difficulty in breathing
-            if (cbBlurredvision.isChecked() && cbDbreathing.isChecked()){
-                startActivity(otherChanceIntent);
-            } else if (cbRunnynose.isChecked() && cbSorethroat.isChecked()){
-                startActivity(coldIntent);
-            } else {
-                startActivity(lowChanceIntent);
-            }
-        } else if (count > 2 && count <= 5) {
-                if (cbFever.isChecked() && cbBodyaches.isChecked() && cbCough.isChecked() && cbFatigue.isChecked() && cbSuddenly.isChecked()){
-                    startActivity(highChanceIntent);
-                } else {
-                    startActivity(mediumChanceIntent);
-                }
-        } else if (count > 5 && count <= 9) {
-            if (cbFever.isChecked() && cbBodyaches.isChecked() && cbCough.isChecked() && cbFatigue.isChecked()) {
-                startActivity(highChanceIntent);
-            }
+            Toast.makeText(getApplicationContext(), "You didn't check any symptoms.", Toast.LENGTH_SHORT).show();
+
         }
 
+        else if (flu_symptoms == 1 && both_symptoms == 0 && not_flu_symptoms == 0){
+            Toast.makeText(getApplicationContext(), "You should check more then one symptom.", Toast.LENGTH_SHORT).show();
+
+        }
+        else if (flu_symptoms == 0 && both_symptoms == 1 && not_flu_symptoms == 0){
+            Toast.makeText(getApplicationContext(), "You should check more then one symptom.", Toast.LENGTH_SHORT).show();
+
+        }
+        else if (flu_symptoms == 0 && both_symptoms == 0 && not_flu_symptoms == 1){
+            Toast.makeText(getApplicationContext(), "You should check more then one symptom.", Toast.LENGTH_SHORT).show();
+
+        }
+
+        else if (flu_symptoms == 1 && both_symptoms == 1 && not_flu_symptoms == 0){
+            Toast.makeText(getApplicationContext(), "You should check more then two symptoms.", Toast.LENGTH_SHORT).show();
+
+        }
+        else if (not_flu_symptoms >= 1){
+            startActivity(otherChanceIntent);
+
+        }
+
+        else if (flu_symptoms == 2 && both_symptoms == 0){
+            startActivity(mediumChanceIntent);
+
+        }
+        else if (flu_symptoms == 3 && both_symptoms == 0){
+            startActivity(mediumChanceIntent);
+
+        }
+        else if (flu_symptoms >= 4 && both_symptoms == 0 && not_flu_symptoms == 0){
+            startActivity(highChanceIntent);
+
+        }
+
+
+        else if (flu_symptoms < 2 && both_symptoms == 2){
+            startActivity(otherChanceIntent);
+
+        }
+        else if (flu_symptoms > 2 && both_symptoms >= 0 && not_flu_symptoms == 0 ){
+            startActivity(highChanceIntent);
+
+        }
+        else if (flu_symptoms > 1 && both_symptoms >= 0 && not_flu_symptoms == 0 ){
+            startActivity(mediumChanceIntent);
+
+        }
+
+
+
+
+
+        }
     }
-}
+
+
