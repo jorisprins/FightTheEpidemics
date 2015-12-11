@@ -1,6 +1,7 @@
 package nl.windesheim.fighttheepidemics;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,8 +17,6 @@ import android.widget.Toast;
 public class HighChanceActivity extends AppCompatActivity
 
 {
-    //int s = ((MyApplication) this.getApplication()).getChance();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +27,7 @@ public class HighChanceActivity extends AppCompatActivity
         Intent HealthActivityIntent = new Intent(getApplicationContext(), HealthActivity.class);
         startActivity(HealthActivityIntent);
         //use intent flag
-        //((MyApplication) this.getApplication()).setChance(2);
+
     }
 
     public void onhReportClicked(View v) {
