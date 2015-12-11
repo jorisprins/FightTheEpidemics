@@ -1,5 +1,6 @@
 package nl.windesheim.fighttheepidemics;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,7 +21,7 @@ public class OtherChanceActivity extends AppCompatActivity
     }
 
     public void onlUnderstandClicked(View v){
-        finish();
-        //use intent flag
+        Intent HealthActivityIntent = new Intent(getApplicationContext(), HealthActivity.class);
+        startActivity(HealthActivityIntent);//use intent flag
     }
 }
