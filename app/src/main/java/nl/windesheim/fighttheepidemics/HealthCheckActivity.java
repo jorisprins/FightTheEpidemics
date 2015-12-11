@@ -151,8 +151,6 @@ public class HealthCheckActivity extends AppCompatActivity {
 
         if (both_symptoms == 0 && flu_symptoms == 0 && not_flu_symptoms == 0) {
             //Nothing is checked warning message
-            Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
-
             Toast.makeText(getApplicationContext(), "You didn't check any symptoms.", Toast.LENGTH_SHORT).show();
 
         }

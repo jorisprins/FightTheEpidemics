@@ -95,10 +95,9 @@
         android:text="I understand"
         android:id="@+id/mediumUnderstand"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:textSize="25dp"
         android:onClick="onmUnderstandClicked"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
