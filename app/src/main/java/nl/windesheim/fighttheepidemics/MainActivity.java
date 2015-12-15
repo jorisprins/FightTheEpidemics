@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Xml;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.app.Activity;
@@ -81,6 +82,12 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 
             mRequestingLocationUpdates = true;
         }
+    }
+
+    //menu
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
     }
 
     /**
