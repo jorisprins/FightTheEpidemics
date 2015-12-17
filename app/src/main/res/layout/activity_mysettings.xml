@@ -10,7 +10,7 @@
     <Switch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sending Data Anonymously"
+        android:text="Enable sending data"
         android:id="@+id/anonSwitch"
         android:textColor="#FF000000"
         android:textSize="20dp"

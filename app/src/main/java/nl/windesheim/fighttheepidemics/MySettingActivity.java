@@ -62,7 +62,7 @@ public class MySettingActivity extends AppCompatActivity {
 
                 if (anonSwitch.isChecked()) {
                     //function anonymous on
-                    Toast.makeText(getApplicationContext(), "You are going to send data anonymously.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enabling Sending Data.", Toast.LENGTH_SHORT).show();
 
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
                     editor.putBoolean("AnonSwitchStatus", true);
