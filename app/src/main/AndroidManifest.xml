@@ -18,28 +18,37 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" >
+        <!-- or android:theme="@anroid:style/Theme.Holo.Light"-->
+
+        <activity
+            android:name="nl.windesheim.fighttheepidemics.MainActivity">
             <intent-filter>
                 <meta-data
                     android:name="com.google.android.gms.version"
                     android:value="@integer/google_play_services_version" />
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".HealthActivity" ></activity>
-        <activity android:name=".MySettingActivity" ></activity>
-        <activity android:name=".HealthCheckActivity" ></activity>
-        <activity android:name=".HealthReportActivity" ></activity>
-        <activity android:name=".HealthMoreinfoActivity" ></activity>
-        <activity android:name=".SignInActivity" ></activity>
-        <activity android:name=".HighChanceActivity" ></activity>
-        <activity android:name=".MediumChanceActivity" ></activity>
-        <activity android:name=".LowChanceActivity" ></activity>
-        <activity android:name=".OtherChanceActivity" ></activity>
-        <activity android:name=".CheckResultActivity" ></activity>
+        <activity android:name="nl.windesheim.fighttheepidemics.HealthActivity" ></activity>
+        <activity
+            android:name="nl.windesheim.fighttheepidemics.MySettingActivity"
+            android:label="activity_my_setting"
+            android:parentActivityName="nl.windesheim.fighttheepidemics.MainActivity">
+            <!--To support aplit actionbar below API level 14-->
+            <meta-data android:name="android.support.UI_OPTIONS"
+                android:value="splitActionBarWhenNarrow" />
+        </activity>
+        <activity android:name="nl.windesheim.fighttheepidemics.HealthCheckActivity" ></activity>
+        <activity android:name="nl.windesheim.fighttheepidemics.HealthReportActivity" ></activity>
+        <activity android:name="nl.windesheim.fighttheepidemics.HealthMoreinfoActivity" ></activity>
+        <activity android:name="nl.windesheim.fighttheepidemics.SignInActivity" ></activity>
+        <activity android:name="nl.windesheim.fighttheepidemics.HighChanceActivity" ></activity>
+        <activity android:name="nl.windesheim.fighttheepidemics.MediumChanceActivity" ></activity>
+        <activity android:name="nl.windesheim.fighttheepidemics.LowChanceActivity" ></activity>
+        <activity android:name="nl.windesheim.fighttheepidemics.OtherChanceActivity" ></activity>
+        <activity android:name="nl.windesheim.fighttheepidemics.CheckResultActivity" ></activity>
     </application>
 
 

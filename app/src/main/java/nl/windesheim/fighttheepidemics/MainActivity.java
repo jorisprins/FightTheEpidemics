@@ -1,12 +1,16 @@
 package nl.windesheim.fighttheepidemics;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Environment;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Xml;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.app.Activity;
@@ -42,7 +46,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks,
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener  {
 
     // LogCat tag
@@ -76,18 +80,48 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 
         // First we need to check availability of play services
         if (checkPlayServices()) {
-
             // Building the GoogleApi client
             buildGoogleApiClient();
-
             mRequestingLocationUpdates = true;
         }
     }
 
     //menu
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_main_actions, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Take appropriate action for each action item click
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                return true;
+
+            case R.id.action_setting:
+                GoSetting();
+                return true;
+
+            case R.id.action_check:
+
+                return true;
+
+            case R.id.action_report:
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void GoSetting(){
+        Intent goSetting = new Intent(getApplicationContext(), MySettingActivity.class);
+        startActivity(goSetting);
     }
 
     /**
@@ -261,35 +295,11 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     public void onHealthClicked(View v){
         Intent healthIntent = new Intent(getApplicationContext(), HealthActivity.class);
         startActivity(healthIntent);
-
-        /*
-        setContentView(R.layout.activity_main);
-
-        Button health = (Button) findViewById(R.id.health);
-        health.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //code -- go to health page
-            }
-        });
-        */
     }
 
     public void onMySettingsClicked(View v){
         Intent mySettingIntent = new Intent(getApplicationContext(), MySettingActivity.class);
         startActivity(mySettingIntent);
-
-        /*
-        setContentView(R.layout.activity_main);
-
-        Button mySettings = (Button) findViewById(R.id.mySettings);
-        mySettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //code -- go to mySetting page
-            }
-        });
-        */
     }
 
     public void onSignInClicked(View v){

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- my settings -->
+    <item android:id="@+id/action_setting"
+        android:title="My Settings"
+        app:showAsAction="never"/>
+
+    <!-- check symptoms-->
+    <item android:id="@+id/action_check"
+        android:title="Check Symptoms"
+        app:showAsAction="never" />
+
+    <!-- reprot status -->
+    <item android:id="@+id/action_report"
+        android:title="Report Status"
+        app:showAsAction="never" />
+</menu>

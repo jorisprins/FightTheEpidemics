@@ -1,5 +1,7 @@
 package nl.windesheim.fighttheepidemics;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +10,11 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -39,6 +44,12 @@ public class MySettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mysettings);
 
+        // Enabling Up / Back navigation
+        /*
+        getSupportActionBar().setDisplayUseLogoEnabled(false); //not working
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //also not working
+        */
+
         anonSwitch = (Switch) findViewById(R.id.anonSwitch);
         wifiSwitch = (Switch) findViewById(R.id.wifiSwitch);
         mobileSwitch = (Switch) findViewById(R.id.mobileSwitch);
@@ -66,7 +77,7 @@ public class MySettingActivity extends AppCompatActivity {
 
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
                     editor.putBoolean("AnonSwitchStatus", true);
-                    editor.commit();
+                    editor.apply();
 
                     mActivity.startLocationUpdates();
 
@@ -74,7 +85,7 @@ public class MySettingActivity extends AppCompatActivity {
                     //function anonymous off
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
                     editor.putBoolean("AnonSwitchStatus", false);
-                    editor.commit();
+                    editor.apply();
 
                     mActivity.stopLocationUpdates();
                 }
@@ -92,14 +103,14 @@ public class MySettingActivity extends AppCompatActivity {
 
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
                     editor.putBoolean("WifiSwitchStatus", true);
-                    editor.commit();
+                    editor.apply();
 
                     wifiManager.setWifiEnabled(true);
                 } else {
                     //wifi off
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
                     editor.putBoolean("WifiSwitchStatus", false);
-                    editor.commit();
+                    editor.apply();
 
                     wifiManager.setWifiEnabled(false);
                 }
@@ -115,7 +126,7 @@ public class MySettingActivity extends AppCompatActivity {
 
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
                     editor.putBoolean("MobileSwitchStatus", true);
-                    editor.commit();
+                    editor.apply();
 
                     //////ERROR :: APP HAS BEEN STOPPED WHEN BUTTON TOGGLE.
                     //Due to security concerns you are not allowed to turn on mobile network programmatically.
@@ -130,7 +141,7 @@ public class MySettingActivity extends AppCompatActivity {
                     //mobile off
                     SharedPreferences.Editor editor = getSharedPreferences("nl.windesheim.fighttheepidemics", MODE_PRIVATE).edit();
                     editor.putBoolean("MobileSwitchStatus", false);
-                    editor.commit();
+                    editor.apply();
 
                     Intent dataNetworkSetting = new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
                     ComponentName cn = new ComponentName("com.android.phone","com.android.phone.Settings");
